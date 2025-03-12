@@ -3,8 +3,7 @@ import { pb, useConfiguratorStore } from "../store";
 import "../components/Ui.css";
 
 const AssetsBox = () => {
-    const { categories, currentCategory, fetchCategories, setCurrentCategory, changeAsset, customization, } = 
-    useConfiguratorStore();
+    const { categories, currentCategory, fetchCategories, setCurrentCategory, changeAsset, customization } = useConfiguratorStore();
 
     useEffect(() => {
         fetchCategories();
@@ -18,7 +17,7 @@ const AssetsBox = () => {
                         key={category.id}
                         onClick={() => setCurrentCategory(category)}
                         className={`category-button ${
-                            currentCategory.name === category.name ? "active" : "inactive"
+                            currentCategory?.name === category.name ? "active" : "inactive"
                         }`}
                     >
                         {category.name}
@@ -26,7 +25,7 @@ const AssetsBox = () => {
                 ))}
             </div>
             <div className="assets-container">
-                {currentCategory?.assets.map((asset) => (
+                {currentCategory?.assets?.map((asset) => (
                     <button 
                         key={asset.thumbnail}
                         onClick={() => changeAsset(currentCategory.name, asset)}
@@ -35,7 +34,7 @@ const AssetsBox = () => {
                             ? "selected" 
                             : "unselected"
                         }`}
-                        >                  
+                    >                  
                         <img src={pb.files.getURL(asset, asset.thumbnail)} alt="Asset Thumbnail"/>
                     </button>
                 ))}
