@@ -1,39 +1,42 @@
 import { useEffect } from "react";
 import { pb, useConfiguratorStore } from "../store";
+import "../components/Ui.css";
 
 const AssetsBox = () => {
-    const { categories, currentCategory, fetchCategories, setCurrentCategory } = 
+    const { categories, currentCategory, fetchCategories, setCurrentCategory, changeAsset, customization, } = 
     useConfiguratorStore();
 
     useEffect(() => {
         fetchCategories();
-    }, []);
-    
-    return(
-        <div className="rounded-2xl bg-white drop-shadow-md p-6 gap-6 flex flex-col">
-            <div className="flex items-center gap-6 pointer-events-auto">
+    }, [fetchCategories]);
+
+    return (
+        <div className="card">
+            <div className="flex items-center gap-6">
                 {categories.map((category) => (
                     <button
                         key={category.id}
                         onClick={() => setCurrentCategory(category)}
-                        className={`transition-colors duration-200 font-medium ${
-                            currentCategory.name === category.name
-                                ? "text-indigo-500"
-                                : "text-gray-500 hover:text-gray-700"
+                        className={`category-button ${
+                            currentCategory.name === category.name ? "active" : "inactive"
                         }`}
                     >
                         {category.name}
                     </button>
                 ))}
             </div>
-            <div className="flex gap-2 flex-wrap">
+            <div className="assets-container">
                 {currentCategory?.assets.map((asset) => (
-                    <button
+                    <button 
                         key={asset.thumbnail}
-                        className={`w-20 h-20 rounded-md overflow-hidden bg-gray-200 pointer-events-auto hover:opacity-100 transition-all 
-                        border-2 duration-500`}
-                    >
-                        <img src={pb.files.getURL(asset, asset.thumbnail)}/>
+                        onClick={() => changeAsset(currentCategory.name, asset)}
+                        className={`asset-button ${
+                        customization[currentCategory.name]?.asset?.id === asset.id 
+                            ? "selected" 
+                            : "unselected"
+                        }`}
+                        >                  
+                        <img src={pb.files.getURL(asset, asset.thumbnail)} alt="Asset Thumbnail"/>
                     </button>
                 ))}
             </div>
@@ -42,9 +45,8 @@ const AssetsBox = () => {
 };
 
 const DownloadButton = () => {
-    return(
-        <button className="rounded-lg bg-indigo-500 hover:bg-indigo-600 transition-colors
-        duration-300 text-white font-medium px-4 py-3 pointer-events-auto">
+    return (
+        <button className="download-button">
             Download
         </button>
     );
@@ -52,18 +54,15 @@ const DownloadButton = () => {
 
 export const UI = () => {
     return (
-        <main className="pointer-events-none fixed z-10 inset-0 p-10">
-            <div className="mx-auto h-full max-w-screen-xl w-full flex flex-col justify-between">
-                <div className="flex justify-between items-center">
-                    <a
-                        className="pointer-events-auto"
-                        href= "https://wawasensei.dev/courses/react-three-fiber"
-                    >
-                        <img className="w-20" src ="null"/>
+        <main className="main-container">
+            <div className="layout">
+                <div className="top-bar">
+                    <a href="https://wawasensei.dev/courses/react-three-fiber">
+                        <img className="logo" src="images/logo.png" alt="Logo"/>
                     </a>
                     <DownloadButton/>
                 </div>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 mt-6">
                     <AssetsBox />
                 </div>
             </div>

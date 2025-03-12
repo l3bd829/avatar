@@ -1,0 +1,59 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full-Screen Canvas */
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Background Styling */
+body {
+    background-color: #130f30; /* Matches Three.js background */
+    font-family: "Arial", sans-serif;
+    overflow: hidden; /* Prevents scrolling */
+}
+
+/* UI Styling */
+.ui-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none; /* Prevents UI blocking interactions */
+}
+
+/* UI Buttons */
+.ui-container button {
+    pointer-events: auto;
+    background-color: #4f46e5; /* Indigo-500 */
+    color: white;
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.ui-container button:hover {
+    background-color: #4338ca; /* Darker Indigo */
+}
+
+/*3D Object Styling*/
+.mesh {
+    transition: transform 0.3s ease-in-out;
+}
+
+.mesh:hover {
+    transform: scale(1.1);
+}

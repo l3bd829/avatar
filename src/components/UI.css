@@ -1,0 +1,137 @@
+/* General button styling */
+button {
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+}
+
+/* Category buttons */
+.category-button {
+    transition: color 0.2s ease-in-out;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    font-weight: 500;
+    color: #6B7280; /* Gray text */
+    padding: 15px;
+}
+
+.category-button.active {
+    color: #6366F1; /* Indigo-500 */
+}
+
+.category-button.inactive {
+    color: #6B7280; /* Gray-500 */
+}
+
+.category-button:hover {
+    color: #374151; /* Gray-700 */
+}
+
+/* Asset buttons */
+.asset-button {
+    width: 5rem; /* 20px */
+    height: 5rem;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    background-color: #E5E7EB; /* Gray-200 */
+    opacity:0.8;
+    transition: opacity 0.3s ease-in-out, border-color 0.5s ease-in-out;
+}
+.asset-button img {
+    width: 100%;
+    height: 100%;
+    object-fit:fill; /* Ensures the whole image is visible */
+}
+
+
+.asset-button:hover {
+    opacity: 1;
+}
+
+/* Download Button */
+.download-button {
+    background-color: #6366F1; /* Indigo-500 */
+    color: white;
+    font-weight: 500;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.download-button:hover {
+    background-color: #4F46E5; /* Indigo-600 */
+}
+
+/* Assets container */
+.assets-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Main container */
+.main-container {
+    position: fixed;
+    z-index: 10;
+    inset: 0;
+    padding: 2.5rem;
+    pointer-events: none; /* Prevent UI from blocking Three.js interactions */
+}
+
+/* Layout settings */
+.layout {
+    margin: auto;
+    height: 100%;
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo styling */
+.logo {
+    width: 5rem;
+}
+
+/* Card-style UI elements */
+.card {
+    border-radius: 1rem;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Prevent text selection */
+.main-container, 
+.main-container * {
+    user-select: none;
+}
+
+/* Allow interactive elements to receive clicks */
+.main-container button, 
+.main-container a, 
+.main-container input {
+    pointer-events: auto;
+}
+
+.selected {
+    border-color: #4f46e5; /* Equivalent to Tailwind's border-indigo-600 */
+    opacity: 1; /* Equivalent to opacity-100 */
+}
+
+
+.unselected {
+    border-color: transparent;
+    opacity: 0.8; /* Equivalent to opacity-80 */
+}
